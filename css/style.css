@@ -1,0 +1,169 @@
+body {
+    margin: 0 auto;
+    background-color: #E5E5E5;
+    font-family: 'Graphik';
+}
+
+header {
+    background-color: #FF5252;
+}
+
+header div {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+header div a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.logo {
+    margin: 10px;
+}
+
+
+#vacancy {
+    max-width: 750px;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.company_banner {
+    max-width: 750px;
+    width: 100%; 
+}
+
+.vacancy_container {
+    margin: 10px 0px;
+    background-color: #FFFFFF;
+}
+
+.vacancy_description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    padding: 20px;
+}
+
+.companyName {
+    color: #FF5252;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.company_logo {
+    max-width: 120px;
+    width: 100%;
+    max-height: 70px;
+}
+
+.salary {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.cityName {
+    color: #212527;
+    margin-left: 20px;
+}
+
+.badges_list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px;
+    
+}
+
+.badges_list li {
+    list-style: none;
+    font-size: 14px;
+    padding: 5px;
+    line-height: 20px;
+    border: 1px solid #C8D1D6;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.vacancy_name {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.vac_bonus {
+    display: flex;
+}
+
+.respond {
+    display: flex;
+    justify-content: space-between;
+}
+
+.respond_button {
+    border: none;
+    outline: none;
+    color: #FF5252;
+    font-weight: 600;
+    background-color: transparent;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.card_buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    cursor: pointer;
+}
+
+.card_respond {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card_buttons * {
+    margin-right: 30px;
+}
+
+.card_buttons button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+.button_status  {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 21px;
+    height: 21px;
+}
+
+.publication_time {
+    color: #687E88;
+    font-size: 14px;
+}
+
+
+@font-face {
+    font-family: 'Graphik';
+    font-weight: 600;
+    src: url(../fonts/Graphik-Bold-Web.woff2);
+}
+
+@font-face {
+    font-family: 'Graphik';
+    font-weight: 400;
+    src: url(../fonts/Graphik-Regular-Web.woff2);
+}
