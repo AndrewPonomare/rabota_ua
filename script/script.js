@@ -1,4 +1,5 @@
-const link = `https://cors-anywhere.herokuapp.com/https://api.el.ua/vacancy/search?keyWords=frontend`;
+// const link = `https://cors-anywhere.herokuapp.com/https://api.el.ua/vacancy/search?keyWords=frontend`;
+const link = `./vacancy.json`;
 const root = document.getElementById('vacancy')
 
 
