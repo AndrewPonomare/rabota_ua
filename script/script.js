@@ -10,11 +10,12 @@ const getSearch = async () => {
 
     body.map(el => {
 
-        let hot = ''
+     
+
         if (el.hot == true) {
-            hot = 'Горящая'
+            el.hot = 'Горящая';
         } else {
-            hot = 'Новая'
+            el.hot = 'Новая';
         }
 
         if (el.salary == false) {
