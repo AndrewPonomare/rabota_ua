@@ -3,11 +3,24 @@ const link = `./vacancy.json`;
 const root = document.getElementById('vacancy')
 
 
+
+UPLOADCARE_LOCALE = "ru";
+    UPLOADCARE_PUBLIC_KEY = '7396115f1b5ea63a0d84';
+    UPLOADCARE_LOCALE_TRANSLATIONS = {
+        buttons: {
+            choose: {
+                images: {
+                    one: 'Откликнуться'
+                }
+            }
+        }
+    }
+
+
 const getSearch = async () => {
     const res = await axios.get(link);
     const body = await res.data.documents;
 
-    let table = document.querySelectorAll('#vacancy')
     let paginations = document.querySelector('#pagination')
     let notesOnPage = 5;
     let countOfItems = Math.ceil(body.length / notesOnPage)
@@ -72,7 +85,12 @@ const getSearch = async () => {
 									</div>
 									<div class="card_respond">
 										<div class="card_buttons">
-											<button class="respond_button"><img src="./img/Icon-Apply.png">Откликнуться</button>
+											<button class="respond_button">
+                                                <img src="./img/Icon-Apply.png">
+                                                <input type="hidden" role="uploadcare-uploader"
+                                                    data-public-key="demopublickey"
+                                                    data-images-only/>
+                                            </button>
 											<button class="button_status"><img class="like" src="./img/star.png"></button>
 											<button class="button_status"><img class="dislike" src="./img/dislike.png"></button>
 										</div>
@@ -81,14 +99,12 @@ const getSearch = async () => {
 								</div>
 							</div>`
                 );
-
+                
                 el.badges.map(b => {
                     document.querySelector('.badges_list').insertAdjacentHTML('beforeend', `
 								<li class="badges_list_item">${b.name}</li>`)
                 })
             })
-
-
         };
     }());
 
@@ -108,7 +124,10 @@ const getSearch = async () => {
             showPage(this);
         });
     }
+  
 };
+
+
 
 
 getSearch();
