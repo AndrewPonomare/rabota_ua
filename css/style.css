@@ -34,10 +34,10 @@ header div a {
 
 .company_banner {
     max-width: 750px;
-    width: 100%; 
+    width: 100%;
 }
 
-.vacancy_container {
+#vacancy_container {
     margin: 10px 0px;
     background-color: #FFFFFF;
 }
@@ -78,7 +78,7 @@ header div a {
     display: flex;
     flex-wrap: wrap;
     padding: 0px;
-    
+
 }
 
 .badges_list li {
@@ -142,7 +142,8 @@ button {
     background-color: transparent;
     border: none;
 }
-.button_status  {
+
+.button_status {
     outline: none;
     background-color: transparent;
     border: none;
@@ -153,6 +154,31 @@ button {
 .publication_time {
     color: #687E88;
     font-size: 14px;
+}
+
+#pagination {
+    display: flex;
+    padding: 0;
+    list-style-type: none;
+}
+
+#pagination li {
+    margin-right: 5px;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+#pagination li:hover,
+#pagination li.active {
+    cursor: pointer;
+    color: red;
+    border: 1px solid red;
+}
+
+.pagination_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
