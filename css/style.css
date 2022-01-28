@@ -119,7 +119,7 @@ header div a {
 
 .card_buttons {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 button {
@@ -189,6 +189,21 @@ button {
 
 .uploadcare-widget-button:hover {
     background-color: transparent;
+}
+
+@media screen and (max-width:340px) {
+    .button_status {
+        margin-right: 20px;
+    }
+
+    .card_buttons {
+        display: grid;
+        grid-template-columns: 200px 50px 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
 }
 
 
