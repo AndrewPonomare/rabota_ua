@@ -17,8 +17,7 @@ UPLOADCARE_LOCALE_TRANSLATIONS = {
         }
     },
     errors: {
-        fileMinimalSize: 'Файл слишком мал',
-        fileMaximumSize: 'Файл превышает допустимый размер',
+        fileMaximumSize: '',
     },
     
 }
@@ -38,7 +37,7 @@ const getSearch = async () => {
 
     console.log(body);
 
-    let showPage = (function () {
+    const showPage = (function () {
         let active;
 
         return function (item) {
@@ -113,6 +112,10 @@ const getSearch = async () => {
                                                 </div>
 										</div>
 									</div>
+                                    <div class="error_msg">
+                                        <img src=./img/attention.png>
+                                        <p>Ёлки-палки, этот файл просто огромный и не помещается в наш сервер</p>
+                                    </div>
 								</div>
 							</div>`
                 );
@@ -122,7 +125,7 @@ const getSearch = async () => {
 								<li class="badges_list_item">${b.name}</li>`)
                 })
 
-                let cards = document.querySelectorAll('#vacancy_container')
+                const cards = document.querySelectorAll('#vacancy_container')
 
 
                 console.log(el.isLiked);
@@ -194,10 +197,13 @@ const getSearch = async () => {
     }
 
     const widgets = uploadcare.initialize();
+    const errorMsg = document.querySelector('.error_msg')
 
+    
     widgets.forEach(widget => {
         widget.validators.push(function (fileInfo) {
             if (fileInfo.size !== null && fileInfo.size > 1024 * 1024) {
+                errorMsg.style.display = 'flex'
                 throw new Error("fileMaximumSize");
             }
         });

@@ -206,6 +206,13 @@ button {
     background-color: transparent;
 }
 
+.error_msg {
+    display: none;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FFD8D8;
+}
+
 @media screen and (max-width:520px) {
     .button_status {
         margin-right: 20px;
