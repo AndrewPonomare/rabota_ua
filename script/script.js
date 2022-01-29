@@ -122,15 +122,20 @@ const getSearch = async () => {
                     let like = l.querySelector('.like')
                     let dislike = l.querySelector('.dislike')
                     let status = l.querySelector('.status')
+
                     if (localStorage.getItem(l.dataset.id) == 'true') {
                         l.style.filter = 'none';
                         like.src = "./img/star_true.png"
                         status.innerHTML = 'Избранная'
                         l.style.opacity = 1
+
                     } else if (localStorage.getItem(l.dataset.id) == 'false') {
+
                         l.style.opacity = 0.5
+                        status.style.backgroundColor  = '#C8D1D6'
                         dislike.src = "./img/dislike_true.png"
                         status.innerText = 'Не интересная'
+                        status.style.color = '#303A3E'
                     }
 
 
@@ -152,6 +157,8 @@ const getSearch = async () => {
                         l.style.opacity = 0.5
                         localStorage.setItem(l.dataset.id, 'false')
                         status.innerHTML = 'Не интересная'
+                        status.style.backgroundColor = '#C8D1D6'
+                        status.style.color = '#303A3E'
 
                     })
                 })
