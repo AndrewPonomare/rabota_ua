@@ -3,18 +3,18 @@ const link = `./vacancy.json`;
 const root = document.getElementById('vacancy')
 
 
-
 UPLOADCARE_LOCALE = "ru";
-    UPLOADCARE_PUBLIC_KEY = '7396115f1b5ea63a0d84';
-    UPLOADCARE_LOCALE_TRANSLATIONS = {
-        buttons: {
-            choose: {
-                images: {
-                    one: 'Откликнуться'
-                }
+UPLOADCARE_PUBLIC_KEY = '7396115f1b5ea63a0d84';
+UPLOADCARE_LOCALE_TRANSLATIONS = {
+    buttons: {
+        choose: {
+            images: {
+                one: 'Откликнуться'
             }
         }
     }
+}
+
 
 
 const getSearch = async () => {
@@ -46,6 +46,8 @@ const getSearch = async () => {
             let notes = body.slice(start, end);
 
             root.innerHTML = ' '
+
+
 
             notes.map(el => {
 
@@ -99,7 +101,7 @@ const getSearch = async () => {
 								</div>
 							</div>`
                 );
-                
+
                 el.badges.map(b => {
                     document.querySelector('.badges_list').insertAdjacentHTML('beforeend', `
 								<li class="badges_list_item">${b.name}</li>`)
@@ -107,6 +109,7 @@ const getSearch = async () => {
             })
         };
     }());
+
 
     let items = [];
 
@@ -124,7 +127,15 @@ const getSearch = async () => {
             showPage(this);
         });
     }
-  
+
+    const widgets = uploadcare.initialize();
+
+    widgets.forEach(widget => {
+        widget.onUploadComplete((fileInfo) => {
+          
+        })
+    })
+
 };
 
 

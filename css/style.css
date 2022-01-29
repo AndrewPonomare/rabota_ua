@@ -203,6 +203,12 @@ button {
         align-items: center;
     }
 
+    .badges_list {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        white-space:nowrap
+    }
+
     
 }
 
