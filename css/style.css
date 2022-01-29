@@ -137,12 +137,6 @@ button {
     margin-right: 30px;
 }
 
-.card_buttons button {
-    outline: none;
-    background-color: transparent;
-    border: none;
-}
-
 .button_status {
     outline: none;
     background-color: transparent;
@@ -152,8 +146,12 @@ button {
     margin-right: 30px;
 }
 
+.like {
+    margin: 0px 30px;
+}
+
 .apply-icon {
-margin-right: 15px;
+    margin-right: 15px;
 }
 
 .publication_time {
@@ -209,14 +207,14 @@ margin-right: 15px;
     .badges_list {
         overflow-x: auto;
         flex-wrap: nowrap;
-        white-space:nowrap
+        white-space: nowrap
     }
 
     .publication_time {
         display: none;
     }
 
-    
+
 }
 
 

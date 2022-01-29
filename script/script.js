@@ -113,6 +113,29 @@ const getSearch = async () => {
                     document.querySelector('.badges_list').insertAdjacentHTML('beforeend', `
 								<li class="badges_list_item">${b.name}</li>`)
                 })
+                let like = document.querySelector('.like')
+                let dislike = document.querySelector('.dislike')
+                console.log(el.isLiked);
+
+                like.addEventListener('click', () => {
+                    el.isLiked = true
+                    if (el.isLiked == true) {
+                        like.src = "./img/star_true.png"
+                        dislike.src = "./img/dislike.png"
+                        el.isDislike = false
+                    }
+                })
+
+                dislike.addEventListener('click', () => {
+                    el.isDislike = true
+                    if (el.isDislike == true) {
+                        dislike.src = "./img/dislike_true.png"
+                        like.src = "./img/star.png"
+                        el.isLiked = false
+                        el.hot = "aewrg"
+                    }
+                })
+
             })
         };
     }());
