@@ -152,6 +152,10 @@ button {
     margin-right: 30px;
 }
 
+.apply-icon {
+margin-right: 15px;
+}
+
 .publication_time {
     color: #687E88;
     font-size: 14px;
@@ -191,14 +195,13 @@ button {
     background-color: transparent;
 }
 
-@media screen and (max-width:340px) {
+@media screen and (max-width:520px) {
     .button_status {
         margin-right: 20px;
     }
 
     .card_buttons {
-        display: grid;
-        grid-template-columns: 200px 50px 10px;
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }
@@ -207,6 +210,10 @@ button {
         overflow-x: auto;
         flex-wrap: nowrap;
         white-space:nowrap
+    }
+
+    .publication_time {
+        display: none;
     }
 
     

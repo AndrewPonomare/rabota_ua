@@ -21,10 +21,16 @@ const getSearch = async () => {
     const res = await axios.get(link);
     const body = await res.data.documents;
 
+
     let paginations = document.querySelector('#pagination')
     let notesOnPage = 5;
     let countOfItems = Math.ceil(body.length / notesOnPage)
 
+    body.map(ds => {
+        ds.isDislike = false
+    })
+
+    console.log(body);
 
     let showPage = (function () {
         let active;
@@ -47,8 +53,6 @@ const getSearch = async () => {
 
             root.innerHTML = ' '
 
-
-
             notes.map(el => {
 
 
@@ -63,6 +67,7 @@ const getSearch = async () => {
                 } else {
                     el.salary = el.salary
                 }
+
 
                 root.insertAdjacentHTML("afterbegin",
                     `<div id="vacancy_container">
@@ -87,16 +92,18 @@ const getSearch = async () => {
 									</div>
 									<div class="card_respond">
 										<div class="card_buttons">
-											<button class="respond_button">
-                                                <img src="./img/Icon-Apply.png">
-                                                <input type="hidden" role="uploadcare-uploader"
-                                                    data-public-key="demopublickey"
-                                                    data-images-only/>
-                                            </button>
-											<button class="button_status"><img class="like" src="./img/star.png"></button>
-											<button class="button_status"><img class="dislike" src="./img/dislike.png"></button>
+                                                <div>
+                                                    <img class="apply-icon" src="./img/Icon-Apply.png"></div>
+                                                    <input type="hidden" role="uploadcare-uploader"
+                                                        data-public-key="demopublickey"
+                                                        data-images-only/>
+                                                    <img class="like" src="./img/star.png">
+                                                    <img class="dislike" src="./img/dislike.png">
+                                                </div>
+                                                <div>
+                                                    <p class="publication_time">${el.dateTxt}</p>
+                                                </div>
 										</div>
-										<p class="publication_time">${el.dateTxt}</p>
 									</div>
 								</div>
 							</div>`
@@ -132,7 +139,7 @@ const getSearch = async () => {
 
     widgets.forEach(widget => {
         widget.onUploadComplete((fileInfo) => {
-          
+
         })
     })
 
