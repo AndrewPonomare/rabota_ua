@@ -126,8 +126,9 @@ const getSearch = async () => {
                         l.style.filter = 'none';
                         like.src = "./img/star_true.png"
                         status.innerHTML = 'Избранная'
+                        l.style.opacity = 1
                     } else if (localStorage.getItem(l.dataset.id) == 'false') {
-                        l.style.filter = 'grayscale(100%)'
+                        l.style.opacity = 0.5
                         dislike.src = "./img/dislike_true.png"
                         status.innerText = 'Не интересная'
                     }
@@ -138,6 +139,7 @@ const getSearch = async () => {
                         like.src = "./img/star_true.png"
                         dislike.src = "./img/dislike.png"
                         l.style.filter = 'none'
+                        l.style.opacity = 1
                         localStorage.setItem(l.dataset.id, 'true')
                         status.innerHTML = 'Избранная'
                        
@@ -147,7 +149,7 @@ const getSearch = async () => {
 
                         dislike.src = "./img/dislike_true.png"
                         like.src = "./img/star.png"
-                        l.style.filter = 'grayscale(100%)'
+                        l.style.opacity = 0.5
                         localStorage.setItem(l.dataset.id, 'false')
                         status.innerHTML = 'Не интересная'
 
