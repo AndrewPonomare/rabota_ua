@@ -191,7 +191,7 @@ button {
     background-color: transparent;
 }
 
-@media screen and (max-width:340px) {
+@media screen and (max-width:520px) {
     .button_status {
         margin-right: 20px;
     }
