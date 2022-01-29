@@ -6,15 +6,22 @@ const root = document.getElementById('vacancy')
 UPLOADCARE_LOCALE = "ru";
 UPLOADCARE_PUBLIC_KEY = '7396115f1b5ea63a0d84';
 UPLOADCARE_LOCALE_TRANSLATIONS = {
+
+}
+UPLOADCARE_LOCALE_TRANSLATIONS = {
     buttons: {
         choose: {
             images: {
                 one: 'Откликнуться'
             }
         }
-    }
+    },
+    errors: {
+        fileMinimalSize: 'Файл слишком мал',
+        fileMaximumSize: 'Файл превышает допустимый размер',
+    },
+    
 }
-
 
 
 const getSearch = async () => {
@@ -94,6 +101,8 @@ const getSearch = async () => {
                                                 <div>
                                                     <img class="apply-icon" src="./img/Icon-Apply.png"></div>
                                                     <input type="hidden" role="uploadcare-uploader"
+                                                        data-max-size="1048576"
+                                                        data-min-size="102400"
                                                         data-public-key="demopublickey"
                                                         data-images-only/>
                                                     <img class="like" src="./img/star.png">
@@ -132,7 +141,7 @@ const getSearch = async () => {
                     } else if (localStorage.getItem(l.dataset.id) == 'false') {
 
                         l.style.opacity = 0.5
-                        status.style.backgroundColor  = '#C8D1D6'
+                        status.style.backgroundColor = '#C8D1D6'
                         dislike.src = "./img/dislike_true.png"
                         status.innerText = 'Не интересная'
                         status.style.color = '#303A3E'
@@ -147,7 +156,7 @@ const getSearch = async () => {
                         l.style.opacity = 1
                         localStorage.setItem(l.dataset.id, 'true')
                         status.innerHTML = 'Избранная'
-                       
+
                     })
 
                     dislike.addEventListener('click', () => {
@@ -187,14 +196,15 @@ const getSearch = async () => {
     const widgets = uploadcare.initialize();
 
     widgets.forEach(widget => {
-        widget.onUploadComplete((fileInfo) => {
+        widget.validators.push(function (fileInfo) {
+            if (fileInfo.size !== null && fileInfo.size > 1024 * 1024) {
+                throw new Error("fileMaximumSize");
+            }
+        });
 
-        })
     })
 
 };
-
-
 
 
 getSearch();
