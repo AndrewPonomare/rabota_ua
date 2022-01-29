@@ -22,13 +22,12 @@ const getSearch = async () => {
     const body = await res.data.documents;
 
 
+
     let paginations = document.querySelector('#pagination')
     let notesOnPage = 5;
     let countOfItems = Math.ceil(body.length / notesOnPage)
 
-    body.map(ds => {
-        ds.isDislike = false
-    })
+
 
     console.log(body);
 
@@ -70,7 +69,7 @@ const getSearch = async () => {
 
 
                 root.insertAdjacentHTML("afterbegin",
-                    `<div id="vacancy_container">
+                    `<div id="vacancy_container" data-id="${el.id}">
 								<div class="card_baner">
 									<img class="company_banner" src="${el.designBannerUrl}" alt="">
 								</div>
@@ -113,29 +112,47 @@ const getSearch = async () => {
                     document.querySelector('.badges_list').insertAdjacentHTML('beforeend', `
 								<li class="badges_list_item">${b.name}</li>`)
                 })
-                let like = document.querySelector('.like')
-                let dislike = document.querySelector('.dislike')
+
+                let cards = document.querySelectorAll('#vacancy_container')
+
+
                 console.log(el.isLiked);
 
-                like.addEventListener('click', () => {
-                    el.isLiked = true
-                    if (el.isLiked == true) {
+                cards.forEach(l => {
+                    let like = l.querySelector('.like')
+                    let dislike = l.querySelector('.dislike')
+                    let status = l.querySelector('.status')
+                    if (localStorage.getItem(l.dataset.id) == 'true') {
+                        l.style.filter = 'none';
+                        like.src = "./img/star_true.png"
+                        status.innerHTML = 'Избранная'
+                    } else if (localStorage.getItem(l.dataset.id) == 'false') {
+                        l.style.filter = 'grayscale(100%)'
+                        dislike.src = "./img/dislike_true.png"
+                        status.innerText = 'Не интересная'
+                    }
+
+
+                    like.addEventListener('click', () => {
+
                         like.src = "./img/star_true.png"
                         dislike.src = "./img/dislike.png"
-                        el.isDislike = false
-                    }
-                })
+                        l.style.filter = 'none'
+                        localStorage.setItem(l.dataset.id, 'true')
+                        status.innerHTML = 'Избранная'
+                       
+                    })
 
-                dislike.addEventListener('click', () => {
-                    el.isDislike = true
-                    if (el.isDislike == true) {
+                    dislike.addEventListener('click', () => {
+
                         dislike.src = "./img/dislike_true.png"
                         like.src = "./img/star.png"
-                        el.isLiked = false
-                        el.hot = "aewrg"
-                    }
-                })
+                        l.style.filter = 'grayscale(100%)'
+                        localStorage.setItem(l.dataset.id, 'false')
+                        status.innerHTML = 'Не интересная'
 
+                    })
+                })
             })
         };
     }());
