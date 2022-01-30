@@ -223,6 +223,8 @@ button {
     margin-right: 5px;
 }
 
+.uploadcare-widget{}
+
 .uploadcare-widget-file-name,
 .uploadcare-widget-file-size {
     display: none!important;

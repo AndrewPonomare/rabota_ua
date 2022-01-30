@@ -106,7 +106,10 @@ const getSearch = async () => {
                                                         data-images-only/>
                                                     <img class="like" src="./img/star.png">
                                                     <img class="dislike" src="./img/dislike.png">
-                                                    <div class="apply"> </div>
+                                                    <div class="apply">
+                                                        <p class="respond_txt"></p> 
+                                                        <a class="cv" href=''></a>
+                                                     </div>
                                                 </div>
                                                 <div>
                                                     <p class="publication_time">${el.dateTxt}</p>
@@ -182,13 +185,15 @@ const getSearch = async () => {
                     const errorMsg = l.querySelector('.error_msg')
                     const iconApply = l.querySelector('.apply-icon')
                     const apply = l.querySelector('.apply')
+                    const respondTxt = l.querySelector('.respond_txt')
+                    const cv = l.querySelector('.cv')
+                    const widgetBtn = l.querySelector('.uploadcare-widget')
 
                     widgets.forEach(widget => {
 
                         widget.validators.push(function (fileInfo) {
                             apply.style.display = 'flex'
                             iconApply.style.display = 'none'
-
 
                             if (fileInfo.size !== null && fileInfo.size > 1024 * 1024) {
                                 errorMsg.style.display = 'flex'
@@ -198,24 +203,30 @@ const getSearch = async () => {
                             }
                         });
 
-                        
-
+                    
                         widget.onUploadComplete(fileInfo => {
                             localStorage.setItem(l.dataset.id, 'apply')
-                            apply.insertAdjacentHTML("afterbegin",
-                                `<p>Отправлено резюме</p> 
-                                <a class="cv" href='${fileInfo.cdnUrl}'>«${fileInfo.name.slice(0, -4)}»</a>`
-                            )
+                            localStorage.setItem('id', fileInfo.name,)
+                            localStorage.setItem('url', fileInfo.cdnUrl)
+                            respondTxt.innerHTML = 'отправлено резюме'
+                            cv.href = fileInfo.cdnUrl
+                            cv.innerHTML = "«" + fileInfo.name.slice(0, -4) + "»"
+                            widgetBtn.style.display = 'none'
+                            iconApply.style.display = 'none'
+                           
+                           
                         });
-                        if (localStorage.getItem(l.dataset.id) == 'apply') {
-                            apply.style.display = 'flex';
-                            
-                            
-                        }
+
+                            if (localStorage.getItem(l.dataset.id) == 'apply') {
+                                apply.style.display = 'flex';
+                                respondTxt.innerHTML = 'отправлено резюме'
+                                cv.href = localStorage.getItem('url')
+                                cv.innerHTML = "«" +localStorage.getItem('id').slice(0, -4) + "»"
+                                widgetBtn.style.display = 'none'
+                                iconApply.style.display = 'none'
+                            }
+ 
                     })
-
-                    
-
 
                 })
             })
