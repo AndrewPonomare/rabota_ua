@@ -8,6 +8,7 @@ UPLOADCARE_PUBLIC_KEY = '7396115f1b5ea63a0d84';
 UPLOADCARE_LOCALE_TRANSLATIONS = {
 
 }
+
 UPLOADCARE_LOCALE_TRANSLATIONS = {
     buttons: {
         choose: {
@@ -22,9 +23,9 @@ UPLOADCARE_LOCALE_TRANSLATIONS = {
 
 }
 
-
 const getSearch = async () => {
-    const res = await axios.get(link);
+    const headers = {'Access-Control-Allow-Origin': '*'}
+    const res = await axios.get(link, headers);
     const body = await res.data.documents;
 
 
@@ -247,8 +248,6 @@ const getSearch = async () => {
             showPage(this);
         });
     }
-
-
 
 };
 
