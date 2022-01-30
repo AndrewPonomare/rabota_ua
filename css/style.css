@@ -251,6 +251,10 @@ button {
         display: none;
     }
 
+    header div {
+        width: 100%;
+        
+    }
 
 }
 
