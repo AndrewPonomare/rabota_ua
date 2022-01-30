@@ -102,10 +102,6 @@ header div a {
     display: flex;
 }
 
-.respond {
-    display: flex;
-    justify-content: space-between;
-}
 
 .respond_button {
     border: none;
@@ -211,6 +207,25 @@ button {
     align-items: center;
     padding: 10px 20px;
     background-color: #FFD8D8;
+}
+
+.cv {
+    text-decoration: none;
+    color: #FF5252;
+}
+
+.apply {
+    display: none;
+    align-items: center;
+    margin-left: 10px
+}
+.apply p {
+    margin-right: 5px;
+}
+
+.uploadcare-widget-file-name,
+.uploadcare-widget-file-size {
+    display: none!important;
 }
 
 @media screen and (max-width:520px) {

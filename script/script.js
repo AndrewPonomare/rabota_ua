@@ -19,7 +19,7 @@ UPLOADCARE_LOCALE_TRANSLATIONS = {
     errors: {
         fileMaximumSize: '',
     },
-    
+
 }
 
 
@@ -99,13 +99,14 @@ const getSearch = async () => {
 										<div class="card_buttons">
                                                 <div>
                                                     <img class="apply-icon" src="./img/Icon-Apply.png"></div>
-                                                    <input type="hidden" role="uploadcare-uploader"
+                                                    <input class="respond" type="hidden" role="uploadcare-uploader"
                                                         data-max-size="1048576"
                                                         data-min-size="102400"
                                                         data-public-key="demopublickey"
                                                         data-images-only/>
                                                     <img class="like" src="./img/star.png">
                                                     <img class="dislike" src="./img/dislike.png">
+                                                    <div class="apply"> </div>
                                                 </div>
                                                 <div>
                                                     <p class="publication_time">${el.dateTxt}</p>
@@ -135,6 +136,7 @@ const getSearch = async () => {
                     let dislike = l.querySelector('.dislike')
                     let status = l.querySelector('.status')
 
+
                     if (localStorage.getItem(l.dataset.id) == 'true') {
                         l.style.filter = 'none';
                         like.src = "./img/star_true.png"
@@ -150,7 +152,6 @@ const getSearch = async () => {
                         status.style.color = '#303A3E'
                     }
 
-
                     like.addEventListener('click', () => {
 
                         like.src = "./img/star_true.png"
@@ -159,8 +160,11 @@ const getSearch = async () => {
                         l.style.opacity = 1
                         localStorage.setItem(l.dataset.id, 'true')
                         status.innerHTML = 'Избранная'
+                        status.style.backgroundColor = '#FFE9E9'
+                        status.style.color = '#BC0002'
 
                     })
+
 
                     dislike.addEventListener('click', () => {
 
@@ -173,6 +177,46 @@ const getSearch = async () => {
                         status.style.color = '#303A3E'
 
                     })
+
+                    const widgets = uploadcare.initialize();
+                    const errorMsg = l.querySelector('.error_msg')
+                    const iconApply = l.querySelector('.apply-icon')
+                    const apply = l.querySelector('.apply')
+
+                    widgets.forEach(widget => {
+
+                        widget.validators.push(function (fileInfo) {
+                            apply.style.display = 'flex'
+                            iconApply.style.display = 'none'
+
+
+                            if (fileInfo.size !== null && fileInfo.size > 1024 * 1024) {
+                                errorMsg.style.display = 'flex'
+                                throw new Error("fileMaximumSize");
+                            } else {
+                                errorMsg.style.display = 'none'
+                            }
+                        });
+
+                        
+
+                        widget.onUploadComplete(fileInfo => {
+                            localStorage.setItem(l.dataset.id, 'apply')
+                            apply.insertAdjacentHTML("afterbegin",
+                                `<p>Отправлено резюме</p> 
+                                <a class="cv" href='${fileInfo.cdnUrl}'>«${fileInfo.name.slice(0, -4)}»</a>`
+                            )
+                        });
+                        if (localStorage.getItem(l.dataset.id) == 'apply') {
+                            apply.style.display = 'flex';
+                            
+                            
+                        }
+                    })
+
+                    
+
+
                 })
             })
         };
@@ -196,19 +240,7 @@ const getSearch = async () => {
         });
     }
 
-    const widgets = uploadcare.initialize();
-    const errorMsg = document.querySelector('.error_msg')
 
-    
-    widgets.forEach(widget => {
-        widget.validators.push(function (fileInfo) {
-            if (fileInfo.size !== null && fileInfo.size > 1024 * 1024) {
-                errorMsg.style.display = 'flex'
-                throw new Error("fileMaximumSize");
-            }
-        });
-
-    })
 
 };
 
