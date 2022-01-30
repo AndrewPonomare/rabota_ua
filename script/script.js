@@ -31,7 +31,7 @@ const getSearch = async () => {
 
 
     let paginations = document.querySelector('#pagination')
-    let notesOnPage = 5;
+    let notesOnPage = 10;
     let countOfItems = Math.ceil(body.length / notesOnPage)
 
 
