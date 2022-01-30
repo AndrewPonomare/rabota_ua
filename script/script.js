@@ -131,9 +131,6 @@ const getSearch = async () => {
 
                 const cards = document.querySelectorAll('#vacancy_container')
 
-
-                console.log(el.isLiked);
-
                 cards.forEach(l => {
                     let like = l.querySelector('.like')
                     let dislike = l.querySelector('.dislike')
